@@ -12,20 +12,83 @@ La seccion de `php81-composer:latest` se debe de acomodar con la version de php
 **NOTA:** Se debe de estar ubicado dentro de la carpeta del proyecto en la
 terminal.
 
----
+- Si el proyecto es echo con laravel 6, se debe de copiar el contenido que está
+  dentro de la carpeta de laravel_6 en la raiz del proyecto.
+
+<h2>Alias</h2>
+Para crear los alias que se usaran para sail y exec se debe de abrir bin con el siguiente comando dentro del WSL
+
+```
+vim ~/.bashrc
+```
+
+- Para editar en vim se usa la tecla "i"
+- Para salir de la edicion se usa la tecla "ESC"
+
+En la ultima linea de vim bajando con la felcha se debe de pegar las 2 lineas:
+
+```
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+alias exec='./exec'
+```
+
+- Para guardar en vim se usa el comando:
+
+```
+:wq
+```
+
+Se debe luego reiniciar la terminal.
+
+<h2>.env</h2>
+Se debe crear el .env con el .env que esta en la carpteta laravel_6
+y los campos se deben editar tanto con el puerto de escucha de la aplicacion como con el nombre del contenedor respectivamente:
+
+- APP_PORT
+- APP_SERVICE
+
+<hr>
 
 - Para ejecutar el `docker-compose.yml` se debe usar el comando:
 
 ```
-docker-compose up -d --build
+sail up -d --build
+ó
+exec up -d --build
 ```
 
 La bandera `--build` se debe usar cuando en el archivo del `docker-compose.yml`
 hay una seccion build que usa un `dokerfile` si no existe no se coloca en el
 anterior comando.
 
-- Para entrar a un contenedor y poder ejecutar los comandos (artisan, npm,
-  composer etc..) se usa:
+- Para ejecutar los comandos (artisan, npm, composer etc..) se usa:
+
+```
+sail <comando>
+```
+
+ó
+
+```
+exec <comando>
+```
+
+<h2>EJ:</h2>
+
+```
+$ sail php artisan make:controller HomeController
+```
+
+ó
+
+```
+$ exec npm i
+```
+
+<hr>
+
+- Si se necesita entrar al contenedor para ejecutar algo de php, npm o composer
+  se debe usar el siguiente comando:
 
 ```
 docker exec -it <nombre_contenedor> bash
