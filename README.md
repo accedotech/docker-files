@@ -15,6 +15,13 @@ terminal.
 - Si el proyecto es echo con laravel 6, se debe de copiar el contenido que está
   dentro de la carpeta de laravel_6 en la raiz del proyecto.
 
+<h2>Permisos</h2>
+Se debe de dar permisos a la carpeta del proyecto para que no haya problemas luego al crear un archivo o hacer un compose dump, se debe de estar dentro del proyecto y darle:
+
+```
+sudo chmod 775 -R .
+```
+
 <h2>Alias</h2>
 Para crear los alias que se usaran para sail y exec se debe de abrir bin con el siguiente comando dentro del WSL
 
@@ -25,7 +32,7 @@ vim ~/.bashrc
 - Para editar en vim se usa la tecla "i"
 - Para salir de la edicion se usa la tecla "ESC"
 
-En la ultima linea de vim bajando con la felcha se debe de pegar las 2 lineas:
+En la ultima linea de vim bajando con la flecha se debe de pegar las 2 lineas:
 
 ```
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
@@ -41,7 +48,7 @@ alias exec='./exec'
 Se debe luego reiniciar la terminal.
 
 <h2>.env</h2>
-Se debe crear el .env con el .env que esta en la carpteta laravel_6
+Se debe crear el .env con el .env que esta en la carpeta laravel_6
 y los campos se deben editar tanto con el puerto de escucha de la aplicacion como con el nombre del contenedor respectivamente:
 
 - APP_PORT
