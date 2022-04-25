@@ -1,14 +1,14 @@
-# For more information: https://laravel.com/docs/sail
 version: '3'
 services:
+  # Este servicio se debe de nombrar igual que en el .env (sera el mismo nombre del contenedor)
   nombre_contenedor:
     build:
       context: ./php_74
       dockerfile: Dockerfile
       args:
         WWWGROUP: '${WWWGROUP}'
-    image: sail-8.1/app
-    container_name: nombre_contenedor
+    image: sail-7.4/app
+    container_name: '${APP_SERVICE}'
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     ports:
