@@ -4,7 +4,7 @@ services:
   phpmyadmin:
     image: phpmyadmin
     restart: always
-    container_name: phpmyadmin
+    container_name: phpmyadmin:5.2.0
     ports:
       - 8080:80
     environment:
