@@ -2,15 +2,17 @@ version: '3.8'
 
 services:
   phpmyadmin:
-    image: phpmyadmin
+    image: phpmyadmin:5.2.0
     restart: always
-    container_name: phpmyadmin:5.2.0
+    container_name: phpmyadmin
     ports:
       - 8080:80
     environment:
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
-      UPLOAD_LIMIT: 300M
+      UPLOAD_LIMIT: 1024M
+      MAX_EXECUTION_TIME: 6000
+      MEMORY_LIMIT : 2096M
     networks:
       - local_net
 networks:
