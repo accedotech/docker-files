@@ -1,20 +1,32 @@
 version: '3.8'
 
 services:
-    redis:
-        image: 'redis:alpine'
-        ports:
-            - '${FORWARD_REDIS_PORT:-6379}:6379'
-        volumes:
-            - 'sailredis:/data'
-        networks:
-            - local_net
+  redis:
+    image: 'redis:alpine'
+    restart: always
+    container_name: redis
+    ports:
+      - '${FORWARD_REDIS_PORT:-6379}:6379'
+    volumes:
+      - 'redis:/data'
+    networks:
+      - local_net
+
+  redisinsight:
+    image: 'redislabs/redisinsight:1.13.1'
+    restart: always
+    container_name: redisinsight
+    ports:
+      - '8083:8001'
+    networks:
+      - local_net
+    depends_on:
+      - redis
 networks:
-    local_net:
-        name: local_net
-        driver: bridge
+  local_net:
+    name: local_net
+    driver: bridge
 volumes:
-    sailredis:
-        driver: local
-
-
+  redis:
+    name: redis
+    driver: local
